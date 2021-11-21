@@ -1,6 +1,5 @@
 name: ci workflow
 # evento PULL_REQUEST
-#
 on:
   pull_request:
     branches:
@@ -8,11 +7,15 @@ on:
 jobs:
   check-application:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ['1.14','1.15']
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
-          go-version: 1.15
+          go-version: ${{ matrix.go }}
       - run: go test
       - run: go run math.go
       
