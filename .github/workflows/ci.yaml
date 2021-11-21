@@ -1,5 +1,9 @@
 name: ci workflow
-on: [push]
+# evento PULL_REQUEST
+on:
+  pull_request:
+    branches:
+      - develop
 jobs:
   check-application:
     runs-on: ubuntu-latest
